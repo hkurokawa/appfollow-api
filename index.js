@@ -100,7 +100,7 @@ function sign(path, params, api_secret) {
         .map(function (o) {
             return o[0] + '=' + o[1];
         })
-        .join();
+        .join('');
     var s = p + path + api_secret;
     return md5(s);
 }

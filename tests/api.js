@@ -41,7 +41,13 @@ describe('#api', function () {
             assert.equal(e.message, 'Some of the required arguments are not specified: apps_id')
         }
     });
-    it('should return success response', function (done) {
+    it('should build URL correctly', function () {
+        mockagent.verifyUrl = function (url) {
+            assert.equal(url, 'http://api.appfollow.io/apps/app?cid=my-client-id&apps_id=my-app-id&sign=98455cea6c49742498eed15c14bd7be2');
+        };
+        appfollow.api('my-api-secret').app({cid: 'my-client-id', apps_id: 'my-app-id'});
+    });
+    it('should return success response for single param API', function (done) {
         mockagent.verifyUrl = function (url) {
             assert.equal(url, 'http://api.appfollow.io/apps?cid=my-client-id&sign=786fa5d8b29a18aed8c1c9071b03ffd0');
         };
@@ -54,5 +60,5 @@ describe('#api', function () {
                 done();
             }
         });
-    })
+    });
 });
