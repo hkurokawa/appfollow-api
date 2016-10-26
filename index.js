@@ -52,6 +52,9 @@ function callee(api_secret, name) {
                 if (err) {
                     return done(new NetworkError('Failed to get the status for ' + url + ': ' + err), null);
                 }
+                if (!response) {
+                    return done(new NetworkError('No response found for ' + url), null);
+                }
                 if (!response.ok) {
                     return done(new AppFollowServerError('Error status returned for ' + url), {
                         statusCode: response.statusCode,
