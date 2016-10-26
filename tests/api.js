@@ -28,6 +28,8 @@ describe('#api', function () {
             appfollow.api('dummy-secret').apps({cid: 'hoge', fuga: ''});
             assert.fail('Error should occur');
         } catch (e) {
+            assert.equal(e.constructor.canonicalName, 'UnexpectedArgumentError');
+            assert.equal(e.message, 'The given argument does not match the spec of API /apps: fuga')
         }
     });
     it('should throw an error if a required argument is missing', function () {
@@ -35,6 +37,8 @@ describe('#api', function () {
             appfollow.api('dummy-secret').app({cid: 'hoge'});
             assert.fail('Error should occur');
         } catch (e) {
+            assert.equal(e.constructor.canonicalName, 'MissingArgumentError');
+            assert.equal(e.message, 'Some of the required arguments are not specified: apps_id')
         }
     });
     it('should return success response', function (done) {

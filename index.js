@@ -10,7 +10,7 @@ var BASE_URL = "http://api.appfollow.io";
 
 var appfollow = {};
 
-var UnexpectedArgumentError = errorFactory('InvalidArgumentError');
+var UnexpectedArgumentError = errorFactory('UnexpectedArgumentError');
 var MissingArgumentError = errorFactory('MissingArgumentError');
 var NetworkError = errorFactory('NetworkError');
 var AppFollowServerError = errorFactory('AppFollowError', ['message', 'statusCode', 'response']);
@@ -18,11 +18,11 @@ var AppFollowError = errorFactory('AppFollowError', ['message', 'error']);
 
 var api = function (api_secret) {
     return _.mapValues(endpoints, function (e, name) {
-        return caller(api_secret, name);
+        return callee(api_secret, name);
     });
 };
 
-function caller(api_secret, name) {
+function callee(api_secret, name) {
     return function call(args, done) {
         if (_.isUndefined(args) && _.isFunction(done)) {
             done = args;
@@ -69,30 +69,39 @@ function caller(api_secret, name) {
 }
 
 function validateArgs(args, spec) {
-    var requiredArgs = _.mapKeys(_.filter(spec.arguments, 'required'), function (value, key) {
-        return key;
-    });
-    for (var n in args) {
-        if (args.hasOwnProperty(n)) {
-            if (!spec['arguments'].hasOwnProperty(n)) {
-                throw new UnexpectedArgumentError('The given argument does not match the spec of API ' + spec.path + ': ' + n);
+    console.dir(spec['arguments']);
+    var requiredArgs = _(spec['arguments'])
+        .omitBy(function (o) {
+            return !o.required;
+        })
+        .keys()
+        .value();
+    _(args)
+        .entries()
+        .forEach(function (kv) {
+            var key = kv[0];
+            if (!_(spec['arguments']).has(key)) {
+                throw new UnexpectedArgumentError('The given argument does not match the spec of API ' + spec.path + ': ' + key);
             }
             _.remove(requiredArgs, function (a) {
-                return a === n;
+                return a === key;
             });
-        }
-    }
-    if (requiredArgs.length > 0) {
-        throw new MissingArgumentError('Some of the required arguments are not specified. ' + requiredArgs);
+        });
+    if (!_.isEmpty(requiredArgs)) {
+        throw new MissingArgumentError('Some of the required arguments are not specified: ' + requiredArgs);
     }
 }
 
 function sign(path, params, api_secret) {
-    var p = _.join(_.map(_.sortBy(_.entries(params), function (o) {
-        return o[0];
-    }), function (o) {
-        return o[0] + '=' + o[1];
-    }), '');
+    var p = _(params)
+        .entries()
+        .sortBy(function (o) {
+            return o[0];
+        })
+        .map(function (o) {
+            return o[0] + '=' + o[1];
+        })
+        .join();
     var s = p + path + api_secret;
     return md5(s);
 }
