@@ -1,0 +1,86 @@
+{
+  "apps": {
+    "path": "/apps",
+    "description": "App collections list",
+    "arguments": {
+      "cid": {
+        "required": true,
+        "description": "clients ID"
+      }
+    }
+  },
+  "app": {
+    "path": "/apps/app",
+    "description": "List of apps from collection",
+    "arguments": {
+      "cid": {
+        "required": true,
+        "description": "clients ID"
+      },
+      "apps_id": {
+        "required": true,
+        "description": "app collection ID"
+      }
+    }
+  },
+  "reviews": {
+    "path": "/reviews",
+    "description": "Reviews",
+    "arguments": {
+      "cid": {
+        "required": true,
+        "description": "clients ID"
+      },
+      "ext_id": {
+        "required": true,
+        "description": "9 digits identification number (AppStore) or the bundle name (Google Play)"
+      },
+      "page": {
+        "required": false,
+        "description": "page number"
+      },
+      "date": {
+        "required": false,
+        "description": "date in format: YYYY-MM-DD"
+      },
+      "last_modified": {
+        "required": false,
+        "description": "date and time of last update in format: YYYY-MM-DD HH:MM:SS"
+      },
+      "country": {
+        "required": false,
+        "description": "for App Store"
+      },
+      "lang": {
+        "required": false,
+        "description": "language for Google Play"
+      }
+    }
+  },
+  "ratings": {
+    "path": "/ratings",
+    "description": "Ratings",
+    "arguments": {
+      "cid": {
+        "required": true,
+        "description": "clients ID"
+      },
+      "ext_id": {
+        "required": true,
+        "description": "9 digits identification number (AppStore) or the bundle name (Google Play)"
+      },
+      "date": {
+        "required": false,
+        "description": "date in format: YYYY-MM-DD"
+      },
+      "country": {
+        "required": false,
+        "description": "for App Store"
+      },
+      "lang": {
+        "required": false,
+        "description": "language for Google Play"
+      }
+    }
+  }
+}

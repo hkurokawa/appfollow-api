@@ -1,0 +1,32 @@
+{
+  "name": "appfollow-api",
+  "version": "1.0.0",
+  "description": "Libraray to call AppFollow API (http://appfollow.io/)",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hkurokawa/appfollow-api.git"
+  },
+  "keywords": [
+    "appfollow",
+    "api"
+  ],
+  "author": "Hiroshi Kurokawa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hkurokawa/appfollow-api/issues"
+  },
+  "homepage": "https://github.com/hkurokawa/appfollow-api#readme",
+  "dependencies": {
+    "error-factory": "^0.1.6",
+    "lodash": "^4.16.4",
+    "md5": "^2.2.1",
+    "mocha": "^3.1.2",
+    "mock-require": "^1.3.0",
+    "querystring": "^0.2.0",
+    "superagent": "^2.3.0"
+  }
+}
