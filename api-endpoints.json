@@ -82,5 +82,121 @@
         "description": "language for Google Play"
       }
     }
+  },
+  "versions": {
+    "path": "/versions",
+    "description": "Versions, any changes including meta-data",
+    "arguments": {
+      "cid": {
+        "required": true,
+        "description": "clients ID"
+      },
+      "ext_id": {
+        "required": true,
+        "description": "9 digits identification number (AppStore) or the bundle name (Google Play)"
+      },
+      "page": {
+        "required": false,
+        "description": "page number"
+      },
+      "country": {
+        "required": false,
+        "description": "for App Store"
+      },
+      "lang": {
+        "required": false,
+        "description": "language for Google Play"
+      }
+    }
+  },
+  "whatsnew": {
+    "path": "/whatsnew",
+    "description": "What's New.",
+    "arguments": {
+      "cid": {
+        "required": true,
+        "description": "clients ID"
+      },
+      "ext_id": {
+        "required": true,
+        "description": "9 digits identification number (AppStore) or the bundle name (Google Play)"
+      },
+      "page": {
+        "required": false,
+        "description": "page number"
+      },
+      "country": {
+        "required": false,
+        "description": "for App Store"
+      },
+      "lang": {
+        "required": false,
+        "description": "language for Google Play"
+      },
+      "last_modified": {
+        "required": false,
+        "description": "date and time of last update in format: YYYY-MM-DD HH:MM:SS"
+      }
+    }
+  },
+  "rankings": {
+    "path": "/rankings",
+    "description": "Rankings",
+    "arguments": {
+      "cid": {
+        "required": true,
+        "description": "clients ID"
+      },
+      "ext_id": {
+        "required": true,
+        "description": "9 digits identification number (AppStore) or the bundle name (Google Play)"
+      },
+      "page": {
+        "required": false,
+        "description": "page number"
+      },
+      "date": {
+        "required": false,
+        "description": "date in format: YYYY-MM-DD"
+      },
+      "country": {
+        "required": false,
+        "description": "for App Store"
+      },
+      "device": {
+        "required": false,
+        "description": "e.g. iphone, ipad, android"
+      }
+    }
+  },
+  "keywords": {
+    "path": "/keywords",
+    "description": "Keywords",
+    "arguments": {
+      "cid": {
+        "required": true,
+        "description": "clients ID"
+      },
+      "ext_id": {
+        "required": true,
+        "description": "9 digits identification number (AppStore) or the bundle name (Google Play)"
+      },
+      "page": {
+        "required": false,
+        "description": "page number"
+      },
+      "date": {
+        "required": false,
+        "description": "date in format: YYYY-MM-DD"
+      },
+      "country": {
+        "required": false,
+        "description": "for App Store"
+      },
+      "device": {
+        "required": false,
+        "description": "e.g. iphone, ipad, android"
+      }
+    }
   }
 }
