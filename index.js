@@ -69,7 +69,6 @@ function callee(api_secret, name) {
 }
 
 function validateArgs(args, spec) {
-    console.dir(spec['arguments']);
     var requiredArgs = _(spec['arguments'])
         .omitBy(function (o) {
             return !o.required;
