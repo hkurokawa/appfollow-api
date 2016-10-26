@@ -16,8 +16,14 @@ var NetworkError = errorFactory('NetworkError');
 var AppFollowServerError = errorFactory('AppFollowError', ['message', 'statusCode', 'response']);
 var AppFollowError = errorFactory('AppFollowError', ['message', 'error']);
 
-appfollow.api = function (api_secret, name) {
-    return function (args, done) {
+var api = function (api_secret) {
+    return _.mapValues(endpoints, function (e, name) {
+        return caller(api_secret, name);
+    });
+};
+
+function caller(api_secret, name) {
+    return function call(args, done) {
         if (_.isUndefined(args) && _.isFunction(done)) {
             done = args;
             args = {};
@@ -60,7 +66,7 @@ appfollow.api = function (api_secret, name) {
                 done(null, response.body);
             });
     }
-};
+}
 
 function validateArgs(args, spec) {
     var requiredArgs = _.mapKeys(_.filter(spec.arguments, 'required'), function (value, key) {
@@ -91,4 +97,5 @@ function sign(path, params, api_secret) {
     return md5(s);
 }
 
+appfollow.api = api;
 module.exports = appfollow;
