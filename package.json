@@ -1,6 +1,6 @@
 {
   "name": "appfollow-api",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Libraray to call AppFollow API (http://appfollow.io/)",
   "main": "index.js",
   "scripts": {
