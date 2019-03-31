@@ -22,7 +22,7 @@
   "homepage": "https://github.com/hkurokawa/appfollow-api#readme",
   "dependencies": {
     "error-factory": "^0.1.6",
-    "lodash": "^4.16.4",
+    "lodash": "^4.17.11",
     "md5": "^2.2.1",
     "querystring": "^0.2.0",
     "superagent": "^3.8.3"
